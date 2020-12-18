@@ -14,6 +14,7 @@ public class PlayerBehaviour : MonoBehaviour
     Ray GroundRay;
     RaycastHit2D groundHit;
     bool bJump = false;
+    Collider2D platformCollider;
 
 
     // Start is called before the first frame update
@@ -33,9 +34,10 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Space) && (GetPlayerVelocity() <= 0.1 || GetPlayerVelocity() >= -0.1))
+        if(Input.GetKeyUp(KeyCode.Space) && !bJump)
         {
             Debug.Log("Jump");
+            bJump = true;
             PlayerJump();
         }
 
@@ -71,8 +73,26 @@ public class PlayerBehaviour : MonoBehaviour
         {
 
         }
+
+        Vector3 forward = transform.TransformDirection(Vector3.down);
+        Debug.DrawLine(transform.position, forward, Color.red);
         
+        if(platformCollider != null)
+        {
+
+        }
+
+
+
     }
+
+
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        Debug.Log("Colliding with" + collision.collider.name);
+        bJump = false;
+    }
+
 
     void CheckGroundDistance()
     {
@@ -82,7 +102,8 @@ public class PlayerBehaviour : MonoBehaviour
 
         if(groundHit.collider != null)
         {
-            Debug.Log("Collider Distance: " + groundHit.collider.name);
+            Debug.Log("Collider : " + groundHit.collider.name);
+            platformCollider = groundHit.collider;
         }
     }
 
