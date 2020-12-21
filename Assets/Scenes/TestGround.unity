@@ -594,7 +594,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -707,7 +707,7 @@ PrefabInstance:
     - target: {fileID: 2805613053491449547, guid: 3e53352c2d768084b810c7107f7029f3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.38
+      value: 10.98
       objectReference: {fileID: 0}
     - target: {fileID: 2805613053491449547, guid: 3e53352c2d768084b810c7107f7029f3,
         type: 3}
@@ -1026,7 +1026,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1067358472}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.41, z: -10}
+  m_LocalPosition: {x: 0, y: 0, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1045,6 +1045,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   verticalOffset: 3
+  MaxXDistance: 2
+  MinXDistance: -2
 --- !u!1 &1439569519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1343,7 +1345,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1707,7 +1709,7 @@ PrefabInstance:
     - target: {fileID: 2805613053491449547, guid: 3e53352c2d768084b810c7107f7029f3,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -4.57
+      value: -11.02
       objectReference: {fileID: 0}
     - target: {fileID: 2805613053491449547, guid: 3e53352c2d768084b810c7107f7029f3,
         type: 3}
