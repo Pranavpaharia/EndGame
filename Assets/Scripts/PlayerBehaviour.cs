@@ -21,7 +21,7 @@ public class PlayerBehaviour : MonoBehaviour
     void Start()
     {
         rb_Player = GetComponent<Rigidbody2D>() as Rigidbody2D;
-        UI_Tpro = GameObject.FindGameObjectWithTag("Respawn").GetComponent<TextMeshProUGUI>() as TextMeshProUGUI;
+        //UI_Tpro = GameObject.FindGameObjectWithTag("Respawn").GetComponent<TextMeshProUGUI>() as TextMeshProUGUI;
         boxCol = this.gameObject.GetComponent<BoxCollider2D>() as BoxCollider2D;
 
         if(UI_Tpro == null)
@@ -79,7 +79,7 @@ public class PlayerBehaviour : MonoBehaviour
         
         if(platformCollider != null)
         {
-
+            
         }
 
 
