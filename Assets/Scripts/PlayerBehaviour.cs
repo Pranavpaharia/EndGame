@@ -11,11 +11,16 @@ public class PlayerBehaviour : MonoBehaviour
     Rigidbody2D rb_Player;
     TextMeshProUGUI UI_Tpro;
     BoxCollider2D boxCol;
+    SpriteRenderer SpriteRenderer;
+    
     Ray GroundRay;
     RaycastHit2D groundHit;
     bool bJump = false;
     Collider2D platformCollider;
 
+    Sprite idlePosition;
+    Sprite JumpUp;
+    Sprite JumpDown;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +28,15 @@ public class PlayerBehaviour : MonoBehaviour
         rb_Player = GetComponent<Rigidbody2D>() as Rigidbody2D;
         //UI_Tpro = GameObject.FindGameObjectWithTag("Respawn").GetComponent<TextMeshProUGUI>() as TextMeshProUGUI;
         boxCol = this.gameObject.GetComponent<BoxCollider2D>() as BoxCollider2D;
+        SpriteRenderer = GetComponent<SpriteRenderer>() as SpriteRenderer;
 
-        if(UI_Tpro == null)
+
+        if (SpriteRenderer == null)
+        {
+            Debug.Log("Found the Sprite Component");
+        }
+
+        if (UI_Tpro == null)
         {
             Debug.Log("No text mesh");
         }
@@ -102,7 +114,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if(groundHit.collider != null)
         {
-            Debug.Log("Collider : " + groundHit.collider.name);
+           // Debug.Log("Collider : " + groundHit.collider.name);
             platformCollider = groundHit.collider;
         }
     }
