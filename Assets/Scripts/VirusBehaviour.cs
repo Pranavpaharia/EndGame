@@ -12,7 +12,6 @@ public class VirusBehaviour : MonoBehaviour
     public float TimePeriod;
 
 
-
     void Start()
     {
 
