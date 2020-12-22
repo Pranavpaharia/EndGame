@@ -56,9 +56,12 @@ public class PlayerBehaviour : MonoBehaviour
         if(Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Began)
+            if(touch.phase == TouchPhase.Began && !bJump)
             {
-                UI_Tpro.SetText("Tap Begins "); 
+                UI_Tpro.SetText("Tap Begins ");
+                //Debug.Log("Jump");
+                //bJump = true;
+                //PlayerJump();
             }
 
 

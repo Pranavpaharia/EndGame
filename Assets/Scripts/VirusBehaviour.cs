@@ -23,6 +23,11 @@ public class VirusBehaviour : MonoBehaviour
     }
 
 
+    public void PlayerCollided()
+    {
+        Debug.Log("AA gaya mein");
+    }
+
     void RandomForce()
     {
         TimePeriod = Random.Range(5, 10);
