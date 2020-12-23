@@ -10,21 +10,32 @@ public class VirusBehaviour : MonoBehaviour
     float MoveSpeed;
     float Torque;
     public float TimePeriod;
-
+    Animator explosionAnimator;
 
     void Start()
     {
 
         TimePeriod = Random.Range(5, 6);
-
-        //RandomForce();
-        //InvokeRepeating("RandomForce", 10, TimePeriod);
+        explosionAnimator = transform.GetChild(1).GetComponent<Animator>();
+        
+        if(explosionAnimator != null)
+        {
+            Debug.Log("Animator Found! Turn it off");
+            explosionAnimator.enabled = false;
+        }
     }
 
 
     public void PlayerCollided()
     {
         Debug.Log("AA gaya mein");
+        explosionAnimator.enabled = true;
+        Invoke("DestroyVirus", 0.5f);
+    }
+
+    void DestroyVirus()
+    {
+        Destroy(gameObject);
     }
 
     void RandomForce()
