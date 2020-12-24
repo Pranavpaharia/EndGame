@@ -23,6 +23,7 @@ public class PlayerBehaviour : MonoBehaviour
     Sprite JumpDown;
 
     Transform platformDirRef;
+    Animator playerAnimator;
     
     // Start is called before the first frame update
     void Start()
@@ -31,8 +32,9 @@ public class PlayerBehaviour : MonoBehaviour
         //UI_Tpro = GameObject.FindGameObjectWithTag("Respawn").GetComponent<TextMeshProUGUI>() as TextMeshProUGUI;
         boxCol = this.gameObject.GetComponent<BoxCollider2D>() as BoxCollider2D;
         SpriteRenderer = GetComponent<SpriteRenderer>() as SpriteRenderer;
+        playerAnimator = GetComponent<Animator>() as Animator;
 
-
+        
         if (SpriteRenderer == null)
         {
             Debug.Log("Found the Sprite Component");
@@ -53,6 +55,8 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.Log("Jump");
             bJump = true;
             PlayerJump();
+            playerAnimator.SetBool("IsJumping", true);
+            playerAnimator.SetBool("Start", true);
         }
 
         if(Input.touchCount > 0)
@@ -110,14 +114,34 @@ public class PlayerBehaviour : MonoBehaviour
         {
             Debug.Log("Colliding with" + collision.collider.name);
             bJump = false;
+            playerAnimator.SetBool("IsJumping", false);
             platformDirRef = collision.collider.transform;
+            if(platformDirRef.GetComponent<PlattformMovement>().currentState == PlattformMovement.MoveState.MoveLeft)
+            {
+                SpriteRenderer.flipX = true;
+            }
+            else
+            {
+                SpriteRenderer.flipX = false;
+            }
         }
-        
+
+
+        if (collision.collider.CompareTag("Ground"))
+        {
+            Debug.Log("Colliding with" + collision.collider.name);
+            bJump = false;
+            playerAnimator.SetBool("IsJumping", false);
+
+        }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        
+        if (collision.collider.CompareTag("Platform"))
+        {
+            platformDirRef = null;
+        }
     }
 
     void CheckGroundDistance()
