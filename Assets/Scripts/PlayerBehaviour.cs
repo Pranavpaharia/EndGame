@@ -22,6 +22,8 @@ public class PlayerBehaviour : MonoBehaviour
     Sprite JumpUp;
     Sprite JumpDown;
 
+    Transform platformDirRef;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -104,10 +106,19 @@ public class PlayerBehaviour : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("Colliding with" + collision.collider.name);
-        bJump = false;
+        if(collision.collider.CompareTag("Platform"))
+        {
+            Debug.Log("Colliding with" + collision.collider.name);
+            bJump = false;
+            platformDirRef = collision.collider.transform;
+        }
+        
     }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        
+    }
 
     void CheckGroundDistance()
     {
