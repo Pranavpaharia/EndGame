@@ -7,10 +7,11 @@ public class OreoPoints : MonoBehaviour
     // Start is called before the first frame update
 
     Animator animator;
+    AudioSource audioSource;
     void Start()
     {
         animator = GetComponent<Animator>();
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
 
@@ -26,6 +27,7 @@ public class OreoPoints : MonoBehaviour
         if(collider2D.CompareTag("Player"))
         {
             animator.SetBool("Pop", true);
+            audioSource.Play();
             Invoke("DestroyOreo", 1);
         }
     }
