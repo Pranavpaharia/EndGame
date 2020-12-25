@@ -81,10 +81,10 @@ public class PlattformMovement : MonoBehaviour
             }
         }
 
-        if(collision.collider.gameObject.CompareTag("DeathField"))
-        {
+        //if(collision.collider.gameObject.CompareTag("DeathField"))
+        //{
 
-        }
+        //}
     }
 
     
