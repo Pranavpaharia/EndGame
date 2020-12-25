@@ -8,13 +8,14 @@ public class PhoneBehavior : MonoBehaviour
 
     GameObject messageObject;
     SpriteRenderer Sprite;
+    Animator animator;
     void Start()
     {
 
-        messageObject = transform.Find("ChatBubble").gameObject;
-        Sprite = messageObject.GetComponent<SpriteRenderer>();
-        Sprite.enabled = false;
-
+        //messageObject = transform.Find("ChatBubble").gameObject;
+        //Sprite = messageObject.GetComponent<SpriteRenderer>();
+        //Sprite.enabled = false;
+        animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
         
 
     }
@@ -33,8 +34,9 @@ public class PhoneBehavior : MonoBehaviour
     {
         if(collider2D.CompareTag("Player"))
         {
-            InvokeRepeating("BlinkOnMessage", 0.1f, 1);
-            InvokeRepeating("BlinkOffMessage", 0.7f, 1);
+            //InvokeRepeating("BlinkOnMessage", 0.1f, 1);
+            //InvokeRepeating("BlinkOffMessage", 0.7f, 1);
+            animator.SetBool("Activate", true);
         }
     }
 
@@ -42,8 +44,8 @@ public class PhoneBehavior : MonoBehaviour
     {
         if (collider2D.CompareTag("Player"))
         {
-            Sprite.enabled = false;
-            CancelInvoke();
+            //Sprite.enabled = false;
+            //CancelInvoke();
         }
     }
 

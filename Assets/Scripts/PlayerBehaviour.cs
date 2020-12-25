@@ -24,6 +24,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     Transform platformDirRef;
     Animator playerAnimator;
+
+    public AudioClip jumpSound;
+    public AudioClip landingSound;
+    AudioSource  audioSource;
+
     
     // Start is called before the first frame update
     void Start()
@@ -34,8 +39,9 @@ public class PlayerBehaviour : MonoBehaviour
         SpriteRenderer = GetComponent<SpriteRenderer>() as SpriteRenderer;
         playerAnimator = GetComponent<Animator>() as Animator;
         playerAnimator.SetBool("MaskOn", false);
-
+        audioSource = GetComponent<AudioSource>();
         
+
         if (SpriteRenderer == null)
         {
             Debug.Log("Found the Sprite Component");
@@ -51,13 +57,16 @@ public class PlayerBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyUp(KeyCode.Space) && !bJump)
+        if(Input.GetKeyDown(KeyCode.Space) && !bJump)
         {
             Debug.Log("Jump");
             bJump = true;
             PlayerJump();
             playerAnimator.SetBool("IsJumping", true);
             playerAnimator.SetBool("Start", true);
+            audioSource.clip = jumpSound;
+            audioSource.Play();
+            transform.SetParent(null);
         }
 
         if(Input.touchCount > 0)
@@ -91,18 +100,18 @@ public class PlayerBehaviour : MonoBehaviour
             ChangeIstriggerProperty(true);
         }
 
-        if(GetPlayerVelocity() == 0)
-        {
+       // if(GetPlayerVelocity() == 0)
+       // {
 
-        }
+       // }
 
-        Vector3 forward = transform.TransformDirection(Vector3.down);
-        Debug.DrawLine(transform.position, forward, Color.red);
+       // Vector3 forward = transform.TransformDirection(Vector3.down);
+       //// Debug.DrawLine(transform.position, forward, Color.red);
         
-        if(platformCollider != null)
-        {
+       // if(platformCollider != null)
+       // {
             
-        }
+       // }
 
 
 
@@ -125,7 +134,9 @@ public class PlayerBehaviour : MonoBehaviour
             bJump = false;
             playerAnimator.SetBool("IsJumping", false);
             platformDirRef = collision.collider.transform;
-            if(platformDirRef.GetComponent<PlattformMovement>().currentState == PlattformMovement.MoveState.MoveLeft)
+            audioSource.clip = landingSound;
+            audioSource.Play();
+            if (platformDirRef.GetComponent<PlattformMovement>().currentState == PlattformMovement.MoveState.MoveLeft)
             {
                 SpriteRenderer.flipX = true;
             }
@@ -136,11 +147,24 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
 
+        
+
+
         if (collision.collider.CompareTag("Ground"))
         {
             Debug.Log("Colliding with" + collision.collider.name);
             bJump = false;
             playerAnimator.SetBool("IsJumping", false);
+
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.CompareTag("Mask"))
+        {
+            Debug.Log("Colliding with" + collider.name);
+            playerAnimator.SetBool("MaskOn", true);
 
         }
     }

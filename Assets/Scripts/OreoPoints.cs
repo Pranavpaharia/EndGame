@@ -8,6 +8,7 @@ public class OreoPoints : MonoBehaviour
 
     Animator animator;
     AudioSource audioSource;
+    bool bOnce = false;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -24,11 +25,12 @@ public class OreoPoints : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider2D)
     {
-        if(collider2D.CompareTag("Player"))
+        if(collider2D.CompareTag("Player") && !bOnce)
         {
             animator.SetBool("Pop", true);
             audioSource.Play();
             Invoke("DestroyOreo", 1);
+            bOnce = true;
         }
     }
 
