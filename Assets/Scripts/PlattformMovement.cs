@@ -80,7 +80,14 @@ public class PlattformMovement : MonoBehaviour
                 }
             }
         }
+
+        if(collision.collider.gameObject.CompareTag("DeathField"))
+        {
+
+        }
     }
+
+    
 
 
     private void OnCollisionExit2D(Collision2D collision)
