@@ -107,6 +107,14 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
+    public void PlayerFlipSide(bool bTurn)
+    {
+        if(bTurn)
+            SpriteRenderer.flipX = true;
+        else
+            SpriteRenderer.flipX = false;
+    }
+
 
     void OnCollisionEnter2D(Collision2D collision)
     {
@@ -171,7 +179,8 @@ public class PlayerBehaviour : MonoBehaviour
 
     void PlayerJump()
     {
-        rb_Player.AddForce(Vector2.up * UpForceMag);
+        //rb_Player.AddForce(Vector2.up * UpForceMag);
+        rb_Player.velocity = Vector2.up * UpForceMag;
         bJump = true;
     }
 
@@ -180,3 +189,5 @@ public class PlayerBehaviour : MonoBehaviour
         CheckGroundDistance();
     }
 }
+
+

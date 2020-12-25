@@ -15,6 +15,7 @@ public class PlattformMovement : MonoBehaviour
     public MoveState currentState;
     public float MoveSpeed = 1.0f;
     Vector2 MoveDir;
+    PlayerBehaviour playerscript;
 
     // Start is called before the first frame update
     void Start()
@@ -53,7 +54,9 @@ public class PlattformMovement : MonoBehaviour
     {
         if(collision.collider.gameObject.tag == "Player")
         {
+            playerscript = collision.collider.gameObject.GetComponent<PlayerBehaviour>();
             collision.collider.transform.SetParent(transform);
+ 
         }
 
         if (collision.collider.gameObject.CompareTag("Pillar"))
@@ -62,11 +65,19 @@ public class PlattformMovement : MonoBehaviour
             {
                 currentState = MoveState.MoveRight;
                 MoveDir = Vector2.right;
+                if(playerscript != null)
+                {
+                    playerscript.PlayerFlipSide(false);
+                }
             }
             else 
             {
                 currentState = MoveState.MoveLeft;
                 MoveDir = Vector2.left;
+                if (playerscript != null)
+                {
+                    playerscript.PlayerFlipSide(true);
+                }
             }
         }
     }
@@ -77,8 +88,11 @@ public class PlattformMovement : MonoBehaviour
         if (collision.collider.gameObject.tag == "Player")
         {
             collision.collider.transform.SetParent(null);
+            playerscript = null;
         }
     }
+
+
 }
 
 
