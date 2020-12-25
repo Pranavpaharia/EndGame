@@ -5,13 +5,17 @@ using UnityEngine;
 public class OreoPoints : MonoBehaviour
 {
     // Start is called before the first frame update
-    
 
-    
+
+    bool Caught = false;
+    Animator animator;
     void Start()
     {
+        animator = GetComponent<Animator>();
         
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -23,7 +27,7 @@ public class OreoPoints : MonoBehaviour
     {
         if(collider2D.CompareTag("Player"))
         {
-
+            animator.SetBool("Pop", true);
         }
     }
 }
