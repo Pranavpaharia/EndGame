@@ -74,16 +74,24 @@ public class PlayerBehaviour : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if(touch.phase == TouchPhase.Began && !bJump)
             {
-                UI_Tpro.SetText("Tap Begins ");
+                //UI_Tpro.SetText("Tap Begins ");
                 //Debug.Log("Jump");
                 //bJump = true;
                 //PlayerJump();
+                Debug.Log("Jump");
+                bJump = true;
+                PlayerJump();
+                playerAnimator.SetBool("IsJumping", true);
+                playerAnimator.SetBool("Start", true);
+                audioSource.clip = jumpSound;
+                audioSource.Play();
+                transform.SetParent(null);
             }
 
 
             if(touch.phase == TouchPhase.Ended)
             {
-                UI_Tpro.SetText("Tap Ends ");
+               // UI_Tpro.SetText("Tap Ends ");
             }
         }
 
