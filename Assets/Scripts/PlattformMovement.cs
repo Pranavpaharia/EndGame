@@ -20,7 +20,7 @@ public class PlattformMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentState = MoveState.MoveLeft;
+        //currentState = MoveState.MoveLeft;
 
         if(currentState == MoveState.MoveLeft)
         {
@@ -45,6 +45,16 @@ public class PlattformMovement : MonoBehaviour
 
     void MoveThePlatform()
     {
+        //switch(MoveDir)
+        //{
+        //    case MoveState.MoveLeft:
+        //        {
+                    
+        //            transform.Translate(MoveDir * MoveSpeed * 0.001f, Space.World);
+        //            break;
+        //        }
+        //}
+
         transform.Translate(MoveDir * MoveSpeed * 0.001f, Space.World);
     }
 

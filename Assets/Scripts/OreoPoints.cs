@@ -6,8 +6,6 @@ public class OreoPoints : MonoBehaviour
 {
     // Start is called before the first frame update
 
-
-    bool Caught = false;
     Animator animator;
     void Start()
     {
@@ -28,6 +26,13 @@ public class OreoPoints : MonoBehaviour
         if(collider2D.CompareTag("Player"))
         {
             animator.SetBool("Pop", true);
+            Invoke("DestroyOreo", 1);
         }
+    }
+
+
+    void DestroyOreo()
+    {
+        Destroy(gameObject);
     }
 }
