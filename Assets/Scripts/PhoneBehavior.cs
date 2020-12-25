@@ -9,6 +9,7 @@ public class PhoneBehavior : MonoBehaviour
     GameObject messageObject;
     SpriteRenderer Sprite;
     Animator animator;
+    AudioSource audioSource;
     void Start()
     {
 
@@ -16,7 +17,7 @@ public class PhoneBehavior : MonoBehaviour
         //Sprite = messageObject.GetComponent<SpriteRenderer>();
         //Sprite.enabled = false;
         animator = transform.GetChild(0).GetChild(0).GetComponent<Animator>();
-        
+        audioSource = gameObject.GetComponent<AudioSource>();
 
     }
 
@@ -37,6 +38,11 @@ public class PhoneBehavior : MonoBehaviour
             //InvokeRepeating("BlinkOnMessage", 0.1f, 1);
             //InvokeRepeating("BlinkOffMessage", 0.7f, 1);
             animator.SetBool("Activate", true);
+
+            if(!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
         }
     }
 

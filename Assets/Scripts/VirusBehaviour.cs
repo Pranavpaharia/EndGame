@@ -11,11 +11,13 @@ public class VirusBehaviour : MonoBehaviour
     float Torque;
     public float TimePeriod;
     Animator explosionAnimator;
+    AudioSource audioSource;
 
     void Start()
     {
 
-        TimePeriod = Random.Range(5, 6);
+        //TimePeriod = Random.Range(5, 6);
+        audioSource = gameObject.GetComponent<AudioSource>();
         explosionAnimator = transform.GetChild(1).GetComponent<Animator>();
         
         if(explosionAnimator != null)
@@ -23,6 +25,9 @@ public class VirusBehaviour : MonoBehaviour
             Debug.Log("Animator Found! Turn it off");
             explosionAnimator.enabled = false;
         }
+
+        InvokeRepeating("RandomForce", TimePeriod, TimePeriod);
+
     }
 
 
@@ -30,6 +35,7 @@ public class VirusBehaviour : MonoBehaviour
     {
         Debug.Log("AA gaya mein");
         explosionAnimator.enabled = true;
+        audioSource.Play();
         Invoke("DestroyVirus", 0.5f);
     }
 
@@ -44,7 +50,7 @@ public class VirusBehaviour : MonoBehaviour
         Direction.x = Random.Range(0.1f, 1);
         Direction.y = Random.Range(0.1f, 1);
         MoveSpeed = Random.Range(5, 10);
-        Torque = Random.Range(5, 25);
+        Torque = Random.Range(-6, 6);
         GetComponent<Rigidbody2D>().velocity = Direction * MoveSpeed;
         //GetComponent<Rigidbody2D>().angularVelocity = 0;
         //GetComponent<Rigidbody2D>().drag = 200;

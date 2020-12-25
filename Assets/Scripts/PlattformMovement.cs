@@ -49,13 +49,14 @@ public class PlattformMovement : MonoBehaviour
         //{
         //    case MoveState.MoveLeft:
         //        {
-                    
+
         //            transform.Translate(MoveDir * MoveSpeed * 0.001f, Space.World);
         //            break;
         //        }
         //}
 
-        transform.Translate(MoveDir * MoveSpeed * 0.001f, Space.World);
+        // transform.Translate(MoveDir * MoveSpeed * 0.001f, Space.World);
+        transform.Translate(MoveDir * MoveSpeed * Time.deltaTime, Space.World);
     }
 
 
