@@ -33,6 +33,7 @@ public class PlayerBehaviour : MonoBehaviour
         boxCol = this.gameObject.GetComponent<BoxCollider2D>() as BoxCollider2D;
         SpriteRenderer = GetComponent<SpriteRenderer>() as SpriteRenderer;
         playerAnimator = GetComponent<Animator>() as Animator;
+        playerAnimator.SetBool("MaskOn", false);
 
         
         if (SpriteRenderer == null)
