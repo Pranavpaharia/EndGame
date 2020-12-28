@@ -27,7 +27,7 @@ public class ShareButtonBehaviour : MonoBehaviour
     private static extern string GetSessionData(string score);
 
 //    public InputField Field;
-    Text TextBox;
+    //Text TextBox;
     PlayerBehaviour playerScript;
     string score;
     void Start()
@@ -57,7 +57,6 @@ public class ShareButtonBehaviour : MonoBehaviour
     {
         RestClient.Get<Score>("http://" + basePath + FSessionData).Then(response => {
             Score_ID = response.score_id;
-            TextBox.text = Score_ID;
         });
 
     }

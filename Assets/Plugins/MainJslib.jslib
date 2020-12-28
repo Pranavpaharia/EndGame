@@ -32,7 +32,7 @@ mergeInto(LibraryManager.library, {
     xmlhttp.open("GET", Pointer_stringify(url), true);
     xmlhttp.send();
     return buffer;
-  },
+  }
 
 //   fetchUrl: function(url){
 //       var fetchData = fetchOHLC(url);
