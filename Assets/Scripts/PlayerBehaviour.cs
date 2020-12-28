@@ -29,6 +29,9 @@ public class PlayerBehaviour : MonoBehaviour
     public AudioClip landingSound;
     AudioSource  audioSource;
 
+    ShareButtonBehaviour shareScript;
+    int score = 0;
+
     
     // Start is called before the first frame update
     void Start()
@@ -40,7 +43,7 @@ public class PlayerBehaviour : MonoBehaviour
         playerAnimator = GetComponent<Animator>() as Animator;
         playerAnimator.SetBool("MaskOn", false);
         audioSource = GetComponent<AudioSource>();
-        
+        shareScript = GetComponent<ShareButtonBehaviour>();
 
         if (SpriteRenderer == null)
         {
@@ -171,9 +174,21 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if (collider.CompareTag("Mask"))
         {
-            Debug.Log("Colliding with" + collider.name);
+            Debug.Log("Mask Acquired");
             playerAnimator.SetBool("MaskOn", true);
+            score++;
+        }
 
+        if (collider.CompareTag("Oreo"))
+        {
+            Debug.Log("Oreo points");
+            score++;
+        }
+
+        if (collider.CompareTag("ShareBlock"))
+        {
+            Debug.Log("Sharing Block Started");
+            shareScript.SendData(score.ToString());
         }
     }
 
