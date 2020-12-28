@@ -44,13 +44,21 @@ public class ShareButtonBehaviour : MonoBehaviour
 
     public IEnumerator SendMethod()
     {
-        printToConsole("Score:" + score);
-        string FSessionData = GetSessionData(score);
-        printToConsole("SessionData:" + FSessionData);
-        Get(FSessionData);
-        yield return new WaitForSeconds(1);
-        printToConsole("ScoreId:" + Score_ID);
-        openWindow("https://www.facebook.com/sharer/sharer.php?u=" + basePath + "/score_id/" + Score_ID + "?url=" + basePath + "&image_src=" + basePath + "/images/" + Score_ID + ".png&title=TITLE&description=DESCRIPTION&hashtag=%23HashtagWorks!");
+        if (Application.isEditor)
+        {
+            print("We are running this from inside of the editor!");
+        }
+        else
+        {
+            printToConsole("Score:" + score);
+            string FSessionData = GetSessionData(score);
+            printToConsole("SessionData:" + FSessionData);
+            Get(FSessionData);
+            yield return new WaitForSeconds(1);
+            printToConsole("ScoreId:" + Score_ID);
+            openWindow("https://www.facebook.com/sharer/sharer.php?u=" + basePath + "/score_id/" + Score_ID + "?url=" + basePath + "&image_src=" + basePath + "/images/" + Score_ID + ".png&title=TITLE&description=DESCRIPTION&hashtag=%23HashtagWorks!");
+        }
+        
     }
 
     public void Get(string FSessionData)

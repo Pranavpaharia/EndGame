@@ -141,7 +141,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         if(collision.collider.CompareTag("Platform"))
         {
-            Debug.Log("Colliding with" + collision.collider.name);
+           // Debug.Log("Colliding with" + collision.collider.name);
             bJump = false;
             playerAnimator.SetBool("IsJumping", false);
             platformDirRef = collision.collider.transform;
@@ -163,7 +163,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (collision.collider.CompareTag("Ground"))
         {
-            Debug.Log("Colliding with" + collision.collider.name);
+           // Debug.Log("Colliding with" + collision.collider.name);
             bJump = false;
             playerAnimator.SetBool("IsJumping", false);
 
