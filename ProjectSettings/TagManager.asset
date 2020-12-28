@@ -8,6 +8,8 @@ TagManager:
   - Platform
   - Ground
   - Mask
+  - ShareBlock
+  - Oreo
   layers:
   - Default
   - TransparentFX
