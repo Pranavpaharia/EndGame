@@ -10,6 +10,7 @@ public class PhoneBehavior : MonoBehaviour
     SpriteRenderer Sprite;
     Animator animator;
     AudioSource audioSource;
+    bool bPlayOnce = false;
     void Start()
     {
 
@@ -39,9 +40,10 @@ public class PhoneBehavior : MonoBehaviour
             //InvokeRepeating("BlinkOffMessage", 0.7f, 1);
             animator.SetBool("Activate", true);
 
-            if(!audioSource.isPlaying)
+            if(!audioSource.isPlaying && !bPlayOnce)
             {
                 audioSource.Play();
+                bPlayOnce = true;
             }
         }
     }
