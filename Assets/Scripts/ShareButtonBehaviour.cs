@@ -10,7 +10,7 @@ using UnityEngine.Networking;
 
 public class ShareButtonBehaviour : MonoBehaviour
 {
-    private readonly string basePath = "yearend.wayne-tech.xyz";
+    private readonly string basePath = "theyearthatwas.in";
     private RequestHelper currentRequest;
     private string Score_ID;
 
@@ -56,7 +56,7 @@ public class ShareButtonBehaviour : MonoBehaviour
             Get(FSessionData);
             yield return new WaitForSeconds(1);
             printToConsole("ScoreId:" + Score_ID);
-            openWindow("https://www.facebook.com/sharer/sharer.php?u=" + basePath + "/score_id/" + Score_ID + "?url=" + basePath + "&image_src=" + basePath + "/images/" + Score_ID + ".png&title=TITLE&description=DESCRIPTION&hashtag=%23HashtagWorks!");
+            openWindow("https://www.facebook.com/sharer/sharer.php?u=" + basePath + "/score_id/" + Score_ID + "?url=" + basePath + "&image_src=" + basePath + "/images/" + Score_ID + ".png&hashtag=%23YearEnder2020Game");
         }
         
     }

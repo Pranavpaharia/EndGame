@@ -30,6 +30,7 @@ public class PlayerBehaviour : MonoBehaviour
     AudioSource  audioSource;
 
     ShareButtonBehaviour shareScript;
+    bool bShareOnce = false;
     int score = 0;
 
     
@@ -44,6 +45,8 @@ public class PlayerBehaviour : MonoBehaviour
         playerAnimator.SetBool("MaskOn", false);
         audioSource = GetComponent<AudioSource>();
         shareScript = GetComponent<ShareButtonBehaviour>();
+
+        
 
         if (SpriteRenderer == null)
         {
@@ -192,10 +195,11 @@ public class PlayerBehaviour : MonoBehaviour
             collider.gameObject.GetComponent<MeshRenderer>().enabled = true;
         }
 
-        if (collider.CompareTag("ShareBlock"))
+        if (collider.CompareTag("ShareBlock") && !bShareOnce)
         {
             Debug.Log("Sharing Block Started");
             Invoke("SendShareData", 17);
+            bShareOnce = true;
         }
     }
 
