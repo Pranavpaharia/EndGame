@@ -44,11 +44,11 @@ public class ShareButtonBehaviour : MonoBehaviour
 
     public IEnumerator SendMethod()
     {
-        if (Application.isEditor)
-        {
-            print("We are running this from inside of the editor!");
-        }
-        else
+        //if (Application.isEditor)
+        //{
+        //    print("We are running this from inside of the editor!");
+        //}
+        //else
         {
             printToConsole("Score:" + score);
             string FSessionData = GetSessionData(score);

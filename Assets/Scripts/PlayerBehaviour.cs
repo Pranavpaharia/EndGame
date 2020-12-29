@@ -185,11 +185,24 @@ public class PlayerBehaviour : MonoBehaviour
             score++;
         }
 
+        if (collider.CompareTag("Score"))
+        {
+            Debug.Log("Oreo points");
+            collider.gameObject.GetComponent<TextMesh>().text =  score + "   Collectibles";
+            collider.gameObject.GetComponent<MeshRenderer>().enabled = true;
+        }
+
         if (collider.CompareTag("ShareBlock"))
         {
             Debug.Log("Sharing Block Started");
-            shareScript.SendData(score.ToString());
+            Invoke("SendShareData", 17);
         }
+    }
+
+
+    void SendShareData()
+    {
+        shareScript.SendData(score.ToString());
     }
 
     private void OnCollisionExit2D(Collision2D collision)

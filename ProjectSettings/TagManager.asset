@@ -10,6 +10,7 @@ TagManager:
   - Mask
   - ShareBlock
   - Oreo
+  - Score
   layers:
   - Default
   - TransparentFX
