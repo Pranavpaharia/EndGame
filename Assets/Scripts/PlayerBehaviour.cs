@@ -9,7 +9,7 @@ public class PlayerBehaviour : MonoBehaviour
     public int UpForceMag = 150;
 
     Rigidbody2D rb_Player;
-    TextMeshProUGUI UI_Tpro;
+    GameObject canvasUI;
     BoxCollider2D boxCol;
     SpriteRenderer SpriteRenderer;
     
@@ -32,20 +32,21 @@ public class PlayerBehaviour : MonoBehaviour
     ShareButtonBehaviour shareScript;
     bool bShareOnce = false;
     int score = 0;
+    bool bShare = true;
 
     
     // Start is called before the first frame update
     void Start()
     {
         rb_Player = GetComponent<Rigidbody2D>() as Rigidbody2D;
-        //UI_Tpro = GameObject.FindGameObjectWithTag("Respawn").GetComponent<TextMeshProUGUI>() as TextMeshProUGUI;
+        canvasUI = GameObject.FindGameObjectWithTag("Respawn");
         boxCol = this.gameObject.GetComponent<BoxCollider2D>() as BoxCollider2D;
         SpriteRenderer = GetComponent<SpriteRenderer>() as SpriteRenderer;
         playerAnimator = GetComponent<Animator>() as Animator;
         playerAnimator.SetBool("MaskOn", false);
         audioSource = GetComponent<AudioSource>();
         shareScript = GetComponent<ShareButtonBehaviour>();
-
+        canvasUI.SetActive(false);
         
 
         if (SpriteRenderer == null)
@@ -53,11 +54,7 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.Log("Found the Sprite Component");
         }
 
-        if (UI_Tpro == null)
-        {
-            Debug.Log("No text mesh");
-        }
-
+        
     }
 
     // Update is called once per frame
@@ -131,6 +128,22 @@ public class PlayerBehaviour : MonoBehaviour
 
     }
 
+    public void PlayerButtonClicked()
+    {
+        if(bShare)
+        { 
+            Debug.Log("Clicked Player Script");
+            shareScript.LaunchShareWindow();
+            bShare = false;
+            Invoke("ReInitShare", 3);
+        }
+    }
+
+    void ReInitShare()
+    {
+        bShare = true;
+    }
+
     public void PlayerFlipSide(bool bTurn)
     {
         if(bTurn)
@@ -198,15 +211,18 @@ public class PlayerBehaviour : MonoBehaviour
         if (collider.CompareTag("ShareBlock") && !bShareOnce)
         {
             Debug.Log("Sharing Block Started");
-            Invoke("SendShareData", 17);
+            Invoke("ShowShareUI", 17);
+            shareScript.SendData(score.ToString());
             bShareOnce = true;
+           
         }
     }
 
 
-    void SendShareData()
+    void ShowShareUI()
     {
-        shareScript.SendData(score.ToString());
+        canvasUI.SetActive(true);
+        
     }
 
     private void OnCollisionExit2D(Collision2D collision)

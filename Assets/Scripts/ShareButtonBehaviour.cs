@@ -54,19 +54,22 @@ public class ShareButtonBehaviour : MonoBehaviour
             string FSessionData = GetSessionData(score);
             printToConsole("SessionData:" + FSessionData);
             Get(FSessionData);
-            yield return new WaitForSeconds(1);
-            printToConsole("ScoreId:" + Score_ID);
-            openWindow("https://www.facebook.com/sharer/sharer.php?u=" + basePath + "/score_id/" + Score_ID + "?url=" + basePath + "&image_src=" + basePath + "/images/" + Score_ID + ".png&hashtag=%23YearEnder2020Game");
+            yield return null;
         }
         
     }
 
     public void Get(string FSessionData)
     {
-        RestClient.Get<Score>("http://" + basePath + FSessionData).Then(response => {
+        RestClient.Get<Score>("https://" + basePath + FSessionData).Then(response => {
             Score_ID = response.score_id;
         });
 
     }
 
+    public void LaunchShareWindow()
+    {
+        printToConsole("ScoreId:" + Score_ID);
+        openWindow("https://www.facebook.com/sharer/sharer.php?u=" + basePath + "/score_id/" + Score_ID + "?url=" + basePath + "&image_src=" + basePath + "/images/" + Score_ID + ".png&hashtag=%23YearEnder2020Game");
+    }
 }
