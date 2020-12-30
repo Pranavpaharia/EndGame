@@ -135,6 +135,7 @@ public class PlayerBehaviour : MonoBehaviour
             Debug.Log("Clicked Player Script");
             shareScript.LaunchShareWindow();
             bShare = false;
+            canvasUI.SetActive(false);
             Invoke("ReInitShare", 3);
         }
     }
@@ -142,6 +143,7 @@ public class PlayerBehaviour : MonoBehaviour
     void ReInitShare()
     {
         bShare = true;
+        canvasUI.SetActive(true);
     }
 
     public void PlayerFlipSide(bool bTurn)

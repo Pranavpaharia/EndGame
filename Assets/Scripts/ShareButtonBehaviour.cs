@@ -40,6 +40,7 @@ public class ShareButtonBehaviour : MonoBehaviour
     {
         score = scorestring;
         StartCoroutine(SendMethod());
+        
     }
 
     public IEnumerator SendMethod()
@@ -54,7 +55,9 @@ public class ShareButtonBehaviour : MonoBehaviour
             string FSessionData = GetSessionData(score);
             printToConsole("SessionData:" + FSessionData);
             Get(FSessionData);
-            yield return null;
+            yield return new WaitForSeconds(2);
+            printToConsole("PreScoreId:" + Score_ID);
+            
         }
         
     }

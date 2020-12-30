@@ -2,7 +2,7 @@ var OpenWindowPlugin = {
     openWindow: function(link)
     {
     	var url = Pointer_stringify(link);
-      window.open(url);
+      window.open(url, "_self");
     }
 };
 
